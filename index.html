@@ -1,13 +1,400 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Cravt Work</title>
-  </head>
-  <body>
-    <div style="width: 600px; margin: 100px auto; text-align: center;">
-    <h1>Welcome to my work!</h1>
-    <a href="poems.html">Check out my Poems</a>
-    <p></p>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciera Cravens: Topology Experience Coordinator</title>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terra:    #bf4e26;
+  --sage:     #3a5442;
+  --sage-dk:  #2d4a3e;
+  --sand:     #f3e9d6;
+  --sand-mid: #e8dbc4;
+  --sky:      #4a8ea2;
+  --ink:      #1e1a16;
+  --muted:    #7a6e63;
+  --night:    #1a1614;
+  --white:    #fff;
+  --rule:     rgba(30,26,22,.1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--sand);color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;image-orientation:from-image}
+a{color:inherit}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-fast{opacity:0;transition:opacity .6s ease}
+.reveal-fast.visible{opacity:1}
+
+.container{max-width:920px;margin:0 auto;padding:0 2.5rem}
+
+h2,h3{font-family:'Lora',Georgia,serif;line-height:1.15}
+h2{font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:700}
+h3{font-size:clamp(1.15rem,2.5vw,1.5rem);font-weight:700}
+
+.section-label{font-family:'Lora',serif;font-size:clamp(1.1rem,2.2vw,1.4rem);font-weight:700;color:var(--ink);margin-bottom:.8rem}
+
+.body-p{font-size:1rem;line-height:1.8;color:var(--ink);margin-bottom:1rem}
+.body-p:last-child{margin-bottom:0}
+
+.body-link{color:var(--sky);text-decoration:underline;text-decoration-color:rgba(74,142,162,.35);text-underline-offset:2px;transition:text-decoration-color .2s}
+.body-link:hover{text-decoration-color:var(--sky)}
+
+.pull-quote{border-left:3px solid var(--terra);padding:.75rem 1.25rem;margin:1.25rem 0;background:rgba(191,78,38,.04)}
+.pull-quote p{font-family:'Lora',serif;font-style:italic;font-size:1.25rem;line-height:1.55}
+.pull-quote .attr{font-size:.78rem;color:var(--muted);margin-top:.35rem}
+
+.sw-divider{display:flex;align-items:center;gap:.55rem;padding:.2rem 2.5rem}
+.sw-divider::before,.sw-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
+.sw-gem{width:7px;height:7px;transform:rotate(45deg);flex-shrink:0}
+.sw-gem.t{background:var(--terra)}
+.sw-gem.s{background:var(--sky)}
+.sw-gem.sm{width:4px;height:4px;opacity:.5}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--terra);display:flex;align-items:center;padding:4rem 5rem;gap:5rem;overflow:hidden}
+.hero-content{flex:1;min-width:0}
+.hero-greeting{font-family:'Rye',Georgia,serif;font-size:clamp(2rem,4.5vw,3.2rem);color:white;line-height:1.15;margin-bottom:.2rem}
+.hero-connector{display:block;font-family:'DM Sans',sans-serif;font-size:clamp(1rem,1.8vw,1.2rem);font-style:italic;color:rgba(255,255,255,.6);margin:.55rem 0 .2rem;letter-spacing:.02em}
+.hero-role{font-family:'Lora',serif;font-weight:700;font-size:clamp(1.3rem,2.8vw,1.85rem);color:white;line-height:1.25;margin-bottom:2.2rem}
+.hero-accent{width:32px;height:2px;background:linear-gradient(to right,rgba(255,255,255,.7),rgba(255,255,255,.2));margin-bottom:1.8rem}
+.hero-contact{font-size:.85rem;color:rgba(255,255,255,.5);line-height:2.1}
+.hero-contact a{color:rgba(255,255,255,.85);text-decoration:underline;text-decoration-color:rgba(255,255,255,.3);text-underline-offset:3px;transition:text-decoration-color .2s}
+.hero-contact a:hover{text-decoration-color:rgba(255,255,255,.85)}
+
+.hero-photo-wrap{flex-shrink:0;overflow:visible}
+.hero-photo-frame{position:relative;display:inline-flex}
+.hero-photo-frame::before{content:'';position:absolute;inset:-20px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.25);pointer-events:none}
+.frame-gem{position:absolute;width:10px;height:10px;background:rgba(255,255,255,.55);transform:rotate(45deg);z-index:2;pointer-events:none}
+.frame-gem--t{top:-25px;left:50%;margin-left:-5px}
+.frame-gem--b{bottom:-25px;left:50%;margin-left:-5px}
+.frame-gem--l{left:-25px;top:50%;margin-top:-5px}
+.frame-gem--r{right:-25px;top:50%;margin-top:-5px}
+.hero-circle{width:460px;height:460px;border-radius:50%;overflow:hidden;border:5px solid rgba(255,255,255,.25);box-shadow:0 0 0 12px rgba(255,255,255,.08),0 12px 40px rgba(0,0,0,.25)}
+.hero-circle img{width:100%;height:100%;object-fit:cover;object-position:57% 10%}
+
+/* ABOUT */
+.about{background:var(--white);padding:6.5rem 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start}
+.about-block{padding-bottom:2.5rem;border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
+.about-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+
+/* TRAVEL */
+.travel{background:var(--sage-dk)}
+.travel-header{padding:2rem 2.5rem;text-align:center;border-bottom:1px solid rgba(255,255,255,.07)}
+.travel-header-text{font-family:'Lora',serif;font-weight:700;font-size:clamp(1.2rem,2.4vw,1.6rem);letter-spacing:.01em;color:rgba(255,255,255,.75)}
+.travel-photos{display:grid;grid-template-columns:1fr 1fr 1fr}
+.travel-photo{position:relative;overflow:hidden;height:290px}
+.travel-photo img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.travel-photo:hover img{transform:scale(1.05)}
+.travel-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.58));color:white;font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:2.5rem 1rem .9rem}
+
+/* MOTIVATIONS */
+.motivations{background:var(--sand);padding:6.5rem 0}
+.section-intro{margin-bottom:3.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--rule)}
+.motive-block{display:grid;grid-template-columns:200px 1fr;gap:3.2rem;align-items:center;padding:3.2rem 0;border-bottom:1px solid var(--rule)}
+.motive-block:last-child{border-bottom:none;padding-bottom:0}
+.motive-block h3{margin-bottom:.75rem}
+.motive-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px}
+.motive-photo.contain img{aspect-ratio:auto;object-fit:contain;background:var(--sand-mid);padding:1rem;border-radius:2px}
+.photo-cap{font-size:.73rem;color:var(--muted);font-style:italic;margin-top:.5rem;text-align:center}
+
+/* EXPERIENCE OVERVIEW */
+.exp-overview{background:var(--sage-dk);padding:8rem 0;text-align:center}
+.exp-overview h2{font-family:'Rye',Georgia,serif;font-size:clamp(2rem,4.2vw,3.2rem);color:white;font-weight:400;margin-bottom:.6rem;line-height:1.45;letter-spacing:.04em;word-spacing:.22em}
+.exp-overview-sub{font-family:'Lora',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,.42)}
+
+/* EXPERIENCE SECTIONS */
+.exp-section{padding:8rem 0 5.5rem;position:relative;overflow:hidden}
+.exp-section--white{background:var(--white)}
+.exp-section--sand{background:var(--sand)}
+.exp-section .container{position:relative;z-index:1}
+
+/* Experience section header */
+.exp-header-row{margin-bottom:.9rem}
+.exp-corner-logo{position:absolute;top:-6rem;right:-2.5rem;pointer-events:none;z-index:0}
+.exp-corner-logo img{height:111px;width:auto;display:block;filter:grayscale(1);opacity:.28}
+.exp-corner-logo--nu img{height:150px;opacity:.3}
+.exp-corner-logo--nu{right:-4rem}
+.exp-corner-logo--dark img{filter:grayscale(1) invert(1);opacity:.3}
+.exp-section-label{font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);margin-bottom:.55rem}
+
+.exp-intro{margin-top:4rem;margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid var(--rule)}
+.exp-intro h2{margin-bottom:.9rem}
+.course-list{font-size:.82rem;color:var(--muted);font-style:italic;line-height:2;margin-top:.6rem}
+.exp-row{padding:2.2rem 0;border-bottom:1px solid var(--rule)}
+.exp-row:last-of-type{border-bottom:none;padding-bottom:0}
+.exp-row h3{margin-bottom:.65rem}
+
+/* CLOSING */
+.closing{position:relative;padding:6.5rem 0;background:url('images/corkins.png') center/cover no-repeat}
+.closing::before{content:'';position:absolute;inset:0;background:rgba(16,10,6,.5)}
+.closing .container{position:relative;z-index:1}
+
+.closing-panel{background:rgba(16,10,6,.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:2.5rem;border-radius:2px;border:2px solid var(--terra);margin-bottom:2.5rem}
+.closing-panel h2{color:white;margin-bottom:1.1rem}
+.closing-intro{font-size:1rem;color:rgba(255,255,255,.68);line-height:1.8;max-width:820px}
+.closing-intro strong{color:white}
+
+.doc-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:4rem}
+.doc-card{background:rgba(16,10,6,.6);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:1.8rem;text-decoration:none;color:white;display:block;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s;backdrop-filter:blur(3px)}
+.doc-card:hover{background:rgba(191,78,38,.18);border-color:var(--terra);transform:translateY(-3px);box-shadow:0 0 0 1px var(--terra)}
+.doc-card-label{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.6rem}
+.doc-card-title{font-family:'Lora',serif;font-size:1.3rem;font-weight:700;color:white;line-height:1.2;margin-bottom:.5rem}
+.doc-card-desc{font-size:.84rem;color:rgba(255,255,255,.45);line-height:1.65}
+
+.sig-block{padding-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.sig-thankyou{font-family:'Rye',Georgia,serif;font-size:clamp(2.4rem,5vw,3.8rem);color:white;line-height:1.1;text-shadow:0 2px 18px rgba(0,0,0,.4)}
+.sig-right{display:flex;flex-direction:column;align-items:flex-start;gap:.4rem}
+.signature-img{height:80px;width:auto;max-width:340px;filter:invert(1) contrast(5);mix-blend-mode:screen;margin-bottom:.15rem}
+.sig-sub{font-size:.8rem;color:rgba(255,255,255,.38);line-height:2.1}
+.sig-sub a{color:rgba(255,255,255,.7);text-decoration:underline;text-decoration-color:rgba(255,255,255,.3);text-underline-offset:3px;transition:text-decoration-color .2s}
+.sig-sub a:hover{text-decoration-color:rgba(255,255,255,.8)}
+
+@media(max-width:820px){
+  .hero{flex-direction:column;padding:3rem 1.75rem;gap:3rem;min-height:auto}
+  .hero-circle{width:260px;height:260px}
+  .about-grid{grid-template-columns:1fr;gap:0}
+  .motive-block{grid-template-columns:1fr;gap:1.5rem;align-items:start}
+  .motive-photo{max-width:180px}
+  .doc-cards{grid-template-columns:1fr}
+  .travel-photos{grid-template-columns:1fr}
+  .travel-photo{height:220px}
+  .exp-header-row{flex-direction:column;gap:1rem}
+  .sig-block{grid-template-columns:1fr;gap:2rem}
+  .container{padding:0 1.5rem}
+  .sw-divider{padding:.2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-greeting reveal">Hi, I'm Ciera</div>
+    <div class="reveal" style="transition-delay:.1s">
+      <span class="hero-connector">and I want to be your</span>
+      <div class="hero-role">Topology Experience Coordinator.</div>
     </div>
-  </body>
+    <div class="hero-accent reveal" style="transition-delay:.18s"></div>
+    <div class="hero-contact reveal" style="transition-delay:.22s">
+      <a href="mailto:cieracravenz@gmail.com">cieracravenz@gmail.com</a><br>
+      <a href="https://linkedin.com/in/ciera-cravens" target="_blank">linkedin.com/in/ciera-cravens</a>
+    </div>
+  </div>
+  <div class="hero-photo-wrap reveal-fast" style="transition-delay:.1s">
+    <div class="hero-photo-frame">
+      <div class="hero-circle">
+        <img src="images/headshot.png" alt="Ciera Cravens">
+      </div>
+      <div class="frame-gem frame-gem--t"></div>
+      <div class="frame-gem frame-gem--b"></div>
+      <div class="frame-gem frame-gem--l"></div>
+      <div class="frame-gem frame-gem--r"></div>
+    </div>
+  </div>
+</section>
+
+<div class="sw-divider" style="background:var(--white);padding-top:1.2rem;padding-bottom:1.2rem;" aria-hidden="true">
+  <div class="sw-gem sm t"></div><div class="sw-gem t"></div><div class="sw-gem s"></div><div class="sw-gem t"></div><div class="sw-gem sm t"></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="about-block reveal">
+          <div class="section-label">Who Even Is She?</div>
+          <p class="body-p">A country girl from Arkansas that believes no dream is too big (she was convinced she would be President of the United States at 5). After excelling at academics and <a class="body-link" href="https://www.si.com/high-school/arkansas/2022/05/13/arkansas-6a-softball-roundup-ciera-cravens-dominates-in-the-circle-to-lead-bentonville-west-to-opening-round-win" target="_blank">sports</a>, she landed a <strong>full-ride scholarship to Northwestern</strong>. Since then she has been indulging her interests in art, philosophy, and especially entrepreneurship. <strong>1 month away from finishing a Bachelor degree in Economics</strong>, this ambitious, free spirit is looking for her next opportunity to help awesome people, thank god she found you!</p>
+        </div>
+        <div class="about-block reveal">
+          <div class="section-label">But You Haven't Even Graduated?</div>
+          <p class="body-p">Throughout my time at Northwestern I have helped <strong>teach 8 classes</strong>, including one graduate level course. As I was completing my undergraduate degree, I have been a part of <strong>5 Techstars programs</strong> as an Operations Associate and helped manage the <a class="body-link" href="https://www.techstars.com/risingstars" target="_blank">Rising Stars Fund</a>. Even though I am relatively young, I already have <strong>years of operations experience</strong>, and still have the humility to be happy to learn more!</p>
+        </div>
+      </div>
+      <div>
+        <div class="about-block reveal">
+          <div class="section-label">Icing on the Cake</div>
+          <p class="body-p">Let's be honest, AI isn't going anywhere, and I'd rather figure out how it actually works than pretend it doesn't exist. I've spent the past few months not just using AI but <strong>upskilling deliberately</strong>: picking up programming basics with <a class="body-link" href="https://www.learnenough.com/?srsltid=AfmBOoq5SRxwHlT7kaiwGOOyrkDjJRI0EtxVq6B5NrYh-4Hng7tk5452r" target="_blank">Learn Enough to be Dangerous</a> so I can do the cool stuff, not just the easy stuff. I also know my way around <strong>Basecamp and Airtable</strong>, which means day-one I can help organize and then actually improve whatever systems are already in place at Corkins.</p>
+        </div>
+        <div class="about-block reveal">
+          <div class="section-label">Ready for Duty</div>
+          <p class="body-p">With school on the way out, <strong>I am ready to be at your service</strong>. I love to travel and have done lots of solo traveling, so I am comfortable booking my own flights and logistics. <em><strong>If you will have me, I am more than happy to be there!</strong></em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAVEL -->
+<div class="travel">
+  <div class="travel-header reveal">
+    <div class="travel-header-text">Photos from My Solo Travels</div>
+  </div>
+  <div class="travel-photos">
+    <div class="travel-photo reveal-fast">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczMi0jO1rXuMcVv5N106ozcukNVXi1hX6BNtlqJgficMaZvlRZKhwgsplHcoXiSpmnMnl9QnK9r1hJT7fqAN4wERqk4zAkMyFajaw1ZtPfBn899lso5SEYdU6srUDjgOgHcLC3CF-2235Y00zJgkj5Y=w1180-h1574-s-no?authuser=0" alt="New York">
+      <div class="travel-caption">New York</div>
+    </div>
+    <div class="travel-photo reveal-fast" style="transition-delay:.1s">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczNzy6pif6FQVGW76o1Ilzlhyj3fGGyYAS8e4Hab8fINnfg4ebk_IXE3aJmsq8bJpbt5JWXppF071MyY7sdaHMlVWEolPckc1xPExSBtQYJJTcjagIkBKCrKSol50l5z--UICFRs9beUUnBqdKLqWgg=w2098-h1574-s-no?authuser=0" alt="Whistler">
+      <div class="travel-caption">Whistler</div>
+    </div>
+    <div class="travel-photo reveal-fast" style="transition-delay:.2s">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczMmtSu62QETqzZAOMm9ZWlejIdyZH9ec5AZNHIBzJr7gGo_WuqkR-zZnWTaLlkxZXGNn52HAOYo7JKfzxdVywOvwdwDK7kW6uxny3f39-uhQhO2mg_mvDO0bXZ56wlGP_Ub5Zm2tQFNJzdHi4EHHyo=w2098-h1574-s-no?authuser=0" alt="San Francisco">
+      <div class="travel-caption">San Francisco</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOTIVATIONS -->
+<section class="motivations">
+  <div class="container">
+    <div class="section-intro reveal">
+      <h2>My Mushy Gushy Motivations<br>to Help You</h2>
+    </div>
+    <div class="motive-block reveal">
+      <div class="motive-photo">
+        <img src="https://lh3.googleusercontent.com/pw/AP1GczN8N75xUmPl5JbO_ztxiTEkKNS6PJDNHR7h-cmQaksDLi4NwB5F5arS2VBlTyV7GW9L0Zrt3sJnNZOWBZ_1WY8pzYdKENae8wyOc4xHPENkSqDAS2FmCVUiV1E1KYEelBW0aq-eRpbWwKlhyD3Xm7Y=w1180-h1574-s-no?authuser=0" alt="Horse on the farm">
+        <div class="photo-cap">From My Grandma's Farm</div>
+      </div>
+      <div>
+        <h3>The Corkins History Is Inspiring</h3>
+        <p class="body-p">As a kid, having wide open land to explore was a privilege I appreciate more and more as I see the place that I grew up in, Northwest Arkansas, turn into a fully developed corporate metropolis. My grandma's small farm in Gravette was where I went fishing with my cousin Joshie and created "hideouts" in trees with my sister and rode horse with my Aunt Jill.</p>
+        <p class="body-p"><strong>The accessibility to wild land was essential to the memories of my childhood I cherish most.</strong> I've experienced the magic of being in the country, forced to put down your phone and figure out the most interesting thing to do with some rocks, and I admire how you are giving people a space to do that. You've struck a chord in my sentimental lil heart, and I want to help you bring friends and families together to explore nature and, without knowing it, create the fondest memories of their life.</p>
+      </div>
+    </div>
+    <div class="motive-block reveal">
+      <div class="motive-photo contain">
+        <img src="https://lh3.googleusercontent.com/pw/AP1GczOQ6bDu0FG4fq8sN3g5p25Prin2MWyl2ZKGrkOcAkbSg5kaPlHZGJepr77a6HxnPysJ4d3sI5nTgFTW_jmNX2ffujZAH8k5kuDIiQqbLeWcMt1w4d5a6ybKAESixrMW5TMuJWQMA1eCTF_S40eS65I=w1180-h1574-s-no?authuser=0" alt="We Can Do It">
+        <div class="photo-cap">We Can Do It</div>
+      </div>
+      <div>
+        <h3>I Want to Change the World, and You Can Help Me Do It</h3>
+        <div class="pull-quote">
+          <p>"I don't want a job, I just want to help people."</p>
+          <div class="attr">- Me during a heart to heart on the bus back from a basketball game</div>
+        </div>
+        <p class="body-p">One of my heroes growing up was Dr. MLK Jr. I even gave a speech about him that won me Miss Centerton, Arkansas! He was brave, selfless, had integrity, and most importantly gave others the strength to fight for a better world.</p>
+        <p class="body-p">Before Northwestern, my plan was to become a successful entrepreneur to employ good people and use my money to do good in the world. That is still a desirable path, but at Northwestern I started to help entrepreneurs in the classroom and at Techstars. That is when I realized I can enable others to build great businesses and therefore <strong>exponentially increase goodness in the world</strong>, no millions (on my part) required!</p>
+        <p class="body-p">Being a part of Topology feels like a natural progression in my journey to help the do-gooders of the world make this place better at a scale I couldn't do alone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sw-divider" style="background:var(--sand);padding-top:1.2rem;padding-bottom:1.2rem;" aria-hidden="true">
+  <div class="sw-gem sm s"></div><div class="sw-gem s"></div><div class="sw-gem t"></div><div class="sw-gem s"></div><div class="sw-gem sm s"></div>
+</div>
+
+<!-- EXPERIENCE OVERVIEW -->
+<div class="exp-overview">
+  <div class="container">
+    <div class="reveal">
+      <h2>Details About My<br>Detail Orientedness</h2>
+      <div class="exp-overview-sub">(And Other Proof That I Can Do This)</div>
+    </div>
+  </div>
+</div>
+
+<!-- NU -->
+<section class="exp-section exp-section--white">
+  <div class="container">
+    <div class="exp-corner-logo exp-corner-logo--nu" aria-hidden="true">
+      <img src="images/NU logo.png" alt="">
+    </div>
+    <div class="exp-intro reveal">
+      <h2>Eight Classes to Get Good at This.</h2>
+      <p class="body-p">I have been the TA for a lot of classes at Northwestern, most of them I had never even taken! After being an administrative assistant in the Entrepreneurship department, a professor I barely knew, <a class="body-link" href="https://www.linkedin.com/in/eduardo-acuna/" target="_blank">Eduardo Acuna</a>, asked me to be his TA. The next quarter, <a class="body-link" href="https://www.linkedin.com/in/hayesferguson/" target="_blank">Hayes Ferguson</a>, the Director of the Entrepreneurship Center, was asking me to TA her classes! My favorites were those where students were tasked with actually making a real business. Coincidence that I am interested in Topology? I think not.</p>
+      <div class="course-list">AI Innovation in Action · NUvention Arts &amp; Entertainment · History of Innovation · Sales &amp; Marketing · <strong>Kellogg New Venture Discovery (Graduate)</strong> · Principles of Entrepreneurship · Innovate for Impact · Bay Area Quarter Seminar</div>
+    </div>
+    <div class="exp-row reveal">
+      <h3>Wrangling 30+ Students.</h3>
+      <p class="body-p">Who knew how hard it would be to get 30+ students to complete assignments on time? I figured it out. I realized students need exhaustive, clear assignment descriptions, MULTIPLE in-person and digital reminders, and even individual nudges. I have learned how to wrangle a bunch of unruly undergrads to be on the same page, so I am <strong>battle tested to handle logistics coordination with care</strong>. Humble brag: I am great at learning names, which is extremely helpful when developing an empathetic and respectful relationship with students.</p>
+    </div>
+    <div class="exp-row reveal">
+      <h3>Grading, Disputes, and Keeping It Professional.</h3>
+      <p class="body-p">The professors I worked with were generally busy people, so they trusted me with grading individual assignments and calculating final grades. Students have a lot of feelings about their grades. Inevitably, I was the one they came to, in person and over email, to talk through grading decisions. I learned how to hold a fair line with empathy, and how to have those conversations without making anyone feel dismissed.</p>
+    </div>
+    <div class="exp-row reveal">
+      <h3>Speaker Logistics, Down to the Water Bottle.</h3>
+      <p class="body-p">Many of the classes I helped with brought in guest speakers. These speakers need to know the location, where to park, how to park for free, how to get to the classroom, when to arrive, and what to talk about. The day of a visit, I am reachable by phone for any need, water bottle in hand, gift ready. <strong>I made sure the speaker experience was so good they would want to come back</strong>, and many did.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TECHSTARS -->
+<section class="exp-section exp-section--sand">
+  <div class="container">
+    <div class="exp-corner-logo exp-corner-logo--dark" aria-hidden="true">
+      <img src="images/techstars_logo.png" alt="">
+    </div>
+    <div class="exp-intro reveal">
+      <h2>A Three-Month Gig<br>That Turned Into Two Years.</h2>
+      <p class="body-p">This job was only supposed to last for 3 months. Techstars Oakland was asking students for short-term help with the operations of their program. I literally passed a vibe check and became a part of the team. Hours before my employment was supposed to end, I was asked by the Managing Director, <a class="body-link" href="https://www.linkedin.com/in/nealsalesgriffin/" target="_blank">Neal Sales-Griffin</a>, and Accelerator Lead, <a class="body-link" href="https://www.linkedin.com/in/lillianarobinson/" target="_blank">Lilliana Robinson</a>, if I would stay on and help with the next program, and the next, and the next. The Techstars programs we ran were some of <strong>the best funded, largest, and most successful programs</strong> in Techstars history.</p>
+    </div>
+    <div class="exp-row reveal">
+      <h3>Coordinating 50+ Zoom Sessions.</h3>
+      <p class="body-p">Each program, Techstars brings in successful business mentors to give feedback to every company, which means coordinating dozens of back-to-back Zoom meetings across 12-24 startups. My role was to navigate founders in and out of those sessions: managing waiting rooms, timing transitions, sending follow-up emails to the stragglers. After each round, I manually recorded and cleaned up all the mentor feedback so it could be delivered in a usable format. The work was tedious, and exactly the kind of thing that has to be done right.</p>
+    </div>
+    <div class="exp-row reveal">
+      <h3>Designing an Experience Founders Remember.</h3>
+      <p class="body-p">The programs I was a part of were hybrid, 10-week programs with 3 in-person weeks. <strong>Our ability to deliver a great experience for founders during those weeks was essential.</strong> This meant office setup, which I took great pride in designing and executing (interior design is a bit of a passion). It also meant catering coordination: given a budget and told to figure it out. Under my care, we stuck to budget, always had plenty of food, and no one went to the hospital for an allergic reaction. During workshops, I handled AV, Zoom management, setup, and teardown.</p>
+    </div>
+    <div class="exp-row reveal">
+      <h3>The Largest Demo Day in Techstars History. I Helped Run It.</h3>
+      <p class="body-p">Demo Day is the final event where founders present their businesses to investors and the public, and for the largest Demo Day in Techstars history, there were over <strong>600 people in the room</strong>. At any moment I might be making a last-minute grocery run and assembling a charcuterie board for eBay executives, or backstage running lines with a founder so they feel confident when they walk out. I have been in the room when it all comes together, and I know what it takes to get it there.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sw-divider" style="background:var(--sand);padding-top:1.2rem;padding-bottom:1.2rem;" aria-hidden="true">
+  <div class="sw-gem sm t"></div><div class="sw-gem t"></div><div class="sw-gem s"></div><div class="sw-gem t"></div><div class="sw-gem sm t"></div>
+</div>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="container">
+    <div class="closing-panel reveal">
+      <h2>Whether you choose me<br>or not, I want to help.</h2>
+      <p class="closing-intro"><strong>Based on the Topology application description</strong> (plus a few more details I thought would be helpful) I created this orientation document that can serve as the workshop logistics foundation.</p>
+    </div>
+    <div class="doc-cards reveal">
+      <a class="doc-card" href="https://docs.google.com/document/d/1ev-5niw8P0MvbulIV6Rdk0kuH7819ohJ4K7IS7C5vKw/edit?tab=t.0#heading=h.80ze38os6j1b" target="_blank">
+        <div class="doc-card-label">Orientation Document</div>
+        <div class="doc-card-title">Topology Coordinator Orientation</div>
+        <div class="doc-card-desc">Full logistics intake pre-filled with what's already known and blanks ready to fill in as answers come in during orientation.</div>
+      </a>
+      <a class="doc-card" href="https://docs.google.com/document/d/1C052p_k_-UronNf4xG-wzTJwyidRnU7KUV2F7OJVevE/edit?tab=t.0#heading=h.ciogiu32ven5" target="_blank">
+        <div class="doc-card-label">Resume</div>
+        <div class="doc-card-title">Ciera Cravens Resume</div>
+        <div class="doc-card-desc">Full work history. The formal and more boring version of all of the above.</div>
+      </a>
+    </div>
+    <div class="sig-block reveal">
+      <div class="sig-thankyou">Thank you!</div>
+      <div class="sig-right">
+        <img src="images/signature.jpeg" class="signature-img" alt="Ciera Cravens signature">
+        <div class="sig-sub">
+          <a href="mailto:cieracravenz@gmail.com">cieracravenz@gmail.com</a><br>
+          <a href="https://linkedin.com/in/ciera-cravens" target="_blank">linkedin.com/in/ciera-cravens</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const obs = new IntersectionObserver(e => {
+  e.forEach(n => { if(n.isIntersecting){ n.target.classList.add('visible'); obs.unobserve(n.target); } });
+}, {threshold:.07});
+document.querySelectorAll('.reveal,.reveal-fast').forEach(el => obs.observe(el));
+</script>
+</body>
 </html>
