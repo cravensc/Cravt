@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Marketplace: Governmentality in the Secondhand Economy</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0d0d0d;
+            --text: #c8c2ba;
+            --bright: #f0ede8;
+            --dim: #555;
+            --rule: #1e1e1e;
+            --f: #5a8fd8;
+            --s: #c4860a;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        /* ─── HEADER ─── */
+        .intro {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 80px 40px 72px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .kicker {
+            font-family: system-ui, sans-serif;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .intro h1 {
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: normal;
+            line-height: 1.15;
+            color: var(--bright);
+            margin-bottom: 24px;
+        }
+
+        .theory-q {
+            font-style: italic;
+            color: #848484;
+            font-size: 0.97rem;
+            line-height: 1.72;
+            max-width: 620px;
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 24px;
+            margin-bottom: 20px;
+        }
+
+        .intro-note {
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.7;
+            max-width: 580px;
+            margin-bottom: 20px;
+        }
+
+        .lens-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .pill {
+            font-family: system-ui, sans-serif;
+            font-size: 0.57rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 2px;
+        }
+
+        .pill-f   { color: var(--f); background: rgba(90,143,216,0.1); border: 1px solid rgba(90,143,216,0.28); }
+        .pill-f span { font-weight: 300; font-size: 0.56rem; margin-left: 5px; opacity: 0.65; }
+        .pill-s   { color: var(--s); background: rgba(196,134,10,0.1); border: 1px solid rgba(196,134,10,0.28); }
+        .pill-s span { font-weight: 300; font-size: 0.56rem; margin-left: 5px; opacity: 0.65; }
+        .pill-obs { color: #383838; border: 1px solid #222; }
+
+        .scroll-hint {
+            font-family: system-ui, sans-serif;
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #777;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-hint::after {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: #777;
+        }
+
+        /* ─── GALLERY SHELL ─── */
+        .gallery-shell {
+            position: relative;
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        /* ─── TRACK (horizontal scroll) ─── */
+        .gallery-track {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .gallery-track::-webkit-scrollbar { display: none; }
+
+        /* ─── SLIDE ─── */
+        .slide {
+            min-width: 100vw;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            padding: 48px 64px 52px;
+            border-right: 1px solid var(--rule);
+        }
+
+        /* ─── IMAGE AREA ─── */
+        .slide-imgs {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .slide-imgs img {
+            max-height: 50vh;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+            border: 1px solid #1a1a1a;
+            background: #080808;
+        }
+
+        /* two-up: each image gets half the space */
+        .slide-imgs.two-up img {
+            max-width: calc(50% - 10px);
+        }
+
+        /* ─── CAPTION AREA ─── */
+        .slide-caption {
+            max-width: 760px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .act-label {
+            font-family: system-ui, sans-serif;
+            font-size: 0.54rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #2a2a2a;
+            margin-bottom: 8px;
+        }
+
+        .cap-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .cap-lenses {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lens {
+            font-family: system-ui, sans-serif;
+            font-size: 0.55rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 2px;
+        }
+
+        .l-f   { color: var(--f); background: rgba(90,143,216,0.1); border: 1px solid rgba(90,143,216,0.28); }
+        .l-s   { color: var(--s); background: rgba(196,134,10,0.1); border: 1px solid rgba(196,134,10,0.28); }
+        .l-obs { color: #383838; border: 1px solid #1e1e1e; }
+
+        .slide-num {
+            font-family: system-ui, sans-serif;
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #555;
+        }
+
+        .cap-title {
+            font-size: 1.3rem;
+            font-weight: normal;
+            color: var(--bright);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .cap-body {
+            font-size: 0.92rem;
+            color: #888;
+            line-height: 1.82;
+            max-width: 680px;
+        }
+
+        .cap-body em { color: #b0aaa2; font-style: italic; }
+        .cap-body strong { color: #c8c2ba; }
+
+        .cap-quote {
+            margin-top: 12px;
+            padding: 10px 16px;
+            border-left: 2px solid #222;
+            font-style: italic;
+            font-size: 0.83rem;
+            color: #777;
+            line-height: 1.65;
+        }
+
+        .cap-quote.q-f { border-left-color: rgba(90,143,216,0.35); }
+        .cap-quote.q-s { border-left-color: rgba(196,134,10,0.35); }
+
+        .cap-quote cite {
+            display: block;
+            margin-top: 6px;
+            font-style: normal;
+            font-family: system-ui, sans-serif;
+            font-size: 0.56rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        /* ─── NAV ARROWS ─── */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: rgba(13,13,13,0.9);
+            border: 1px solid #555;
+            color: #888;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: color 0.15s, border-color 0.15s;
+            user-select: none;
+        }
+
+        .nav-arrow:hover { color: var(--bright); border-color: #444; }
+        .nav-arrow.prev { left: 16px; }
+        .nav-arrow.next { right: 16px; }
+        .nav-arrow:disabled { opacity: 0.15; cursor: default; }
+
+        /* ─── SLIDE COUNTER ─── */
+        .slide-counter {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: system-ui, sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #2a2a2a;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* ─── SLIDE IMAGE LABELS (for two-up) ─── */
+        .img-labeled {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            max-width: calc(50% - 10px);
+        }
+
+        .img-labeled img {
+            max-height: 50vh;
+            max-width: 100%;
+            object-fit: contain;
+            border: 1px solid #1a1a1a;
+            background: #080808;
+        }
+
+        .img-label {
+            font-family: system-ui, sans-serif;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #777;
+        }
+
+        /* ─── VIDEO EMBED ─── */
+        .slide-video {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto 32px;
+        }
+
+        /* ─── CLOSING ─── */
+        .closing {
+            background: #080808;
+            border-top: 1px solid var(--rule);
+            padding: 88px 40px 80px;
+        }
+
+        .closing-inner {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .closing .kicker { margin-bottom: 16px; }
+
+        .closing h2 {
+            font-size: 1.6rem;
+            font-weight: normal;
+            color: var(--bright);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .closing p {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 1.2em;
+            line-height: 1.82;
+        }
+
+        .closing blockquote {
+            margin: 28px 0;
+            padding: 14px 18px;
+            border-left: 2px solid #333;
+            font-style: italic;
+            font-size: 0.88rem;
+            color: #777;
+            line-height: 1.7;
+        }
+
+        .closing blockquote cite {
+            display: block;
+            margin-top: 7px;
+            font-style: normal;
+            font-family: system-ui, sans-serif;
+            font-size: 0.56rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        .final-line {
+            color: var(--bright) !important;
+            font-style: italic;
+            font-size: 0.97rem !important;
+            margin-top: 28px !important;
+        }
+
+        /* ─── BACK MATTER ─── */
+        .back-matter {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 44px 40px 72px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .back-matter h2 {
+            font-family: system-ui, sans-serif;
+            font-size: 0.57rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #2a2a2a;
+            margin-bottom: 12px;
+        }
+
+        .back-matter p {
+            font-size: 0.78rem;
+            color: #777;
+            line-height: 1.65;
+            margin-bottom: 0.7em;
+        }
+
+        .ai-note {
+            margin-top: 28px;
+            padding: 16px 20px;
+            border: 1px solid #222;
+            background: #080808;
+            font-size: 0.77rem;
+            color: #777;
+            line-height: 1.65;
+        }
+
+        .ai-label {
+            font-family: system-ui, sans-serif;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 600px) {
+            .slide { padding: 32px 20px 44px; }
+            .slide-imgs.two-up { flex-direction: column; }
+            .slide-imgs.two-up img, .img-labeled { max-width: 100%; }
+            .intro { padding: 56px 20px 48px; }
+            .closing, .back-matter { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── INTRO ─── -->
+<header class="intro">
+    <p class="kicker">Algorithmic Ethnography by Ciera Cravens</p>
+    <h1>Facebook Marketplace:<br>Governmentality in the<br>Secondhand Economy</h1>
+    <p class="theory-q">How does Facebook Marketplace's captivating algorithm capture willing, or unwilling, participants? Once people become users, how are they governed through the design of things on the platform?</p>
+  
+    <div class="lens-row">
+        <div class="pill pill-f">Foucault <span>Governmentality, 1978</span></div>
+        <div class="pill pill-s">Seaver <span>Captivating Algorithms, 2019</span></div>
+
+    </div>
+    <p class="scroll-hint">Scroll through the gallery below</p>
+</header>
+
+<!-- ─── GALLERY ─── -->
+<div class="gallery-shell">
+    <button class="nav-arrow prev" id="prev" aria-label="Previous">&#8592;</button>
+    <button class="nav-arrow next" id="next" aria-label="Next">&#8594;</button>
+    <div class="slide-counter" id="counter">01 &nbsp;/&nbsp; 12</div>
+
+    <div class="gallery-track" id="track">
+
+        <!-- ── 01: Loom video — you need a Facebook account ── -->
+        <div class="slide">
+            <div class="slide-video">
+                <div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe src="https://www.loom.com/embed/30b455af3d144f3e9d0279eb477b099d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-s">Seaver</span></div>
+                    <span class="slide-num">01 / 12</span>
+                </div>
+                <h2 class="cap-title">You Want Things. Join Facebook.</h2>
+                <p class="cap-body">In the mobile browser, while not logged into a Facebook account, you can browse everything Marketplace has. Window shopping. But you can't take any action, even sharing an item. The thing that turns browsing into an actual transaction is locked behind the platform. Seaver describes the trap as effective precisely when it gives you enough to create genuine desire before foreclosing action. Marketplace is designed exactly this way: sufficient to want, insufficient to act without being captured. If you&rsquo;re new to Facebook, this is how Marketplace is employed to convert browsers into account holders.</p>
+                <blockquote class="cap-quote q-s">
+                    &ldquo;To be caught at this speed is not to be dead, rather it is to be enclosed, known, and subject to manipulation &mdash; styles of enclosure that are no less sinister for being less than absolute.&rdquo;
+                    <cite>&mdash; Nick Seaver, Captivating Algorithms (2019)</cite>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- ── 02: before and after algorithm ── -->
+        <div class="slide">
+            <div class="slide-imgs two-up">
+                <div class="img-labeled">
+                    <img src="feed_logged_out_vehicles_high_ticket.png" alt="Logged-out Marketplace feed showing vehicles and sailboats">
+                    <span class="img-label">Logged out</span>
+                </div>
+                <div class="img-labeled">
+                    <img src="feed_establishing_shot_todays_picks.png" alt="Logged-in Marketplace feed showing personalized furniture and home goods">
+                    <span class="img-label">Logged in</span>
+                </div>
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-s">Seaver</span></div>
+                    <span class="slide-num">02 / 12</span>
+                </div>
+                <h2 class="cap-title">Before and After the Algorithm Knows You</h2>
+                <p class="cap-body">The first picture is the Facebook Marketplace homepage that you see when you are viewing it as a guest from the browser. Here, Marketplace shows you whatever is nearby and expensive. Cars, boats, and things with enough value to make signing up feel worth it. There is also only local items, no ads or e-commerce listings. The second picture is the Marketplace homepage the moment I logged in. I didn&rsquo;t have to search for room dividers. I didn&rsquo;t have to filter by furniture. They were just there, waiting for me. Facebook already knew what I was looking for, because it had been learning from everything I have been doing on the platform for the past few weeks. The logged-in feed removes the need to seek on the platform so you can immediately get to scrolling. You stop noticing you&rsquo;re being led.</p>
+            </div>
+        </div>
+
+        <!-- ── 03: ads / revenue ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="feed_ads_mixed_with_organic_olaplex_loreal.png" alt="Marketplace app feed with Olaplex sponsored ad and L'Oreal Paris video ad alongside local Chicago listings">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-s">Seaver</span></div>
+                    <span class="slide-num">03 / 12</span>
+                </div>
+                <h2 class="cap-title">Revenue Hiding in the Community</h2>
+                <p class="cap-body">When being enticed to Facebook Marketplace, logged out on the mobile browser, the feed is entirely local sellers. Logged into the app, it&rsquo;s this: Olaplex hair treatment, sponsored, sitting directly next to a $20 bookshelf from a Chicago neighbor and a $55 wicker hamper from down the street. I&rsquo;ve clicked on something thinking it was a listing and realized mid-scroll it was a commercial product &mdash; Temu, in my case. The community marketplace feel is real enough to keep you scrolling, and that&rsquo;s exactly what makes it effective cover for the advertising that pays for all of it. The social, peer-to-peer imaginary is the engagement engine. The ads are the revenue. Both appear in the same grid.</p>
+            </div>
+        </div>
+
+        <!-- ── 04: message prompts ── -->
+        <div class="slide">
+            <div class="slide-imgs two-up">
+                <div class="img-labeled">
+                    <img src="buyer_quick_response.png" alt="Buyer quick response options: Is this still available, Is the price negotiable, What is the condition, Can I pick it up today">
+                    <span class="img-label">Buyer &mdash; pre-written options</span>
+                </div>
+                <div class="img-labeled">
+                    <img src="seller_quick_response.png" alt="Seller quick response options for responding to inquiries">
+                    <span class="img-label">Seller &mdash; pre-written replies</span>
+                </div>
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-f">Foucault</span></div>
+                    <span class="slide-num">04 / 12</span>
+                </div>
+                <h2 class="cap-title">Scripting the Exchange</h2>
+                <p class="cap-body">When you want to reach out about a listing, Facebook hands you a menu of pre-approved messages. Sellers get a matching set of replies. Neither person is actually has to write their messages. The platform has pre-decided what a transaction opening sounds like and made it so easy to pick one that composing your own message feels like unnecessary effort. That&rsquo;s one tactic in what Foucault calls governmentality: not telling people what to do, but arranging things so that one path feels like the obvious, brainless choice.</p>
+                <blockquote class="cap-quote q-f">
+                    &ldquo;Government is the right disposition of things, arranged so as to lead to a convenient end.&rdquo;
+                    <cite>&mdash; Michel Foucault, Governmentality (1978)</cite>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- ── 05: seller public profile ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="seller_public_profile_ethan_pryor.png" alt="Ethan Pryor's full Facebook profile visible from a Marketplace listing: photo, location, join date, active listings">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-f">Foucault</span></div>
+                    <span class="slide-num">05 / 12</span>
+                </div>
+                <h2 class="cap-title">I See You</h2>
+                <p class="cap-body">Clicking on a listing shows images of an item, the full description, and the sellers name. One more click reveals that sellers entire Facebook profile: their photos, where they live, how long they&rsquo;ve been on the platform, how many active listings they have. Ethan Pryor lives in Carmel, Indiana. He joined in 2012. He has eight active listings. I know this because I was interested in his fridge. As a seller, knowing buyers can look you up creates a quiet incentive to keep your Facebook profile credible with appropriate photos, some activity, something that signals you&rsquo;re a real person. I added a profile picture to my mostly dormant Facebook account specifically to seem like a more trustworthy seller. Facebook captured me into building a presence I didn&rsquo;t want.</p>
+            </div>
+        </div>
+
+        <!-- ── 06: seller ratings ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="seller_profile_rating_joindate_message_prompt.png" alt="Seller Elizabeth Glatz: 5 stars, 13 ratings, Joined Facebook 2009, pre-filled message prompt">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-f">Foucault</span></div>
+                    <span class="slide-num">06 / 12</span>
+                </div>
+                <h2 class="cap-title">The Rating You&rsquo;re Always Earning</h2>
+                <p class="cap-body">Every seller has a star rating visible right on their listing. Elizabeth Glatz has five stars across thirteen transactions, a badge for reliability, and has been on Facebook since 2009. All of this appears the moment you&rsquo;re considering her wicker hamper. Buyers can rate sellers on accuracy of description, responsiveness, and condition; sellers can rate buyers right back. I realized how much these ratings affected me after I forgot to clean an item I promised a buyer that I would. They took the item, but I was anxious that if they rated me, they would rate me poorly and therefore affect my success as someone using Marketplace. Now I am even more careful and pleasant, especially with buyers, to ensure that I keep my rating high. Facebook didn't have to do anything to discipline me for that mistake, those little stars tell me everything I need to know.</p>
+                <blockquote class="cap-quote q-f">
+                    &ldquo;It is a question not of imposing law on men, but of disposing things &mdash; employing tactics rather than laws.&rdquo;
+                    <cite>&mdash; Michel Foucault, Governmentality (1978)</cite>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- ── 07: messaging limit ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="messaging_limit_reached_screen.png" alt="You've reached the messaging limit screen">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-f">Foucault</span></div>
+                    <span class="slide-num">07 / 12</span>
+                </div>
+                <h2 class="cap-title">The Limit They Call Community</h2>
+                <p class="cap-body">One afternoon, mid-search, Facebook cut me off. I&rsquo;d hit the daily messaging limit. The platform frames it warmly &mdash; <em>&ldquo;to help build a better community for buyers and sellers.&rdquo;</em> I couldn&rsquo;t contact the sellers I was trying to reach until tomorrow. I learned that I had to be more careful about who I messaged to buy from so that I didn't miss out on something I really wanted because I hit a messaging limit. I broke a rule that I didn't know about, but it definitely made me change my behavior. I started saving items, spending more time on the platform thinking and deciding rather than messaging and moving on. This was both a behavioral governing tactic and a trap.</p>
+            </div>
+        </div>
+
+        <!-- ── 08: see more listings — new notification ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="see_more_listings.PNG" alt="Marketplace For You feed: New for you — you can see more listings like the Patio set you saved">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-s">Seaver</span></div>
+                    <span class="slide-num">08 / 12</span>
+                </div>
+                <h2 class="cap-title">Another Reason to Come Back</h2>
+                <p class="cap-body">After I saved a patio set, Marketplace helpfully let me know that I can &ldquo;see more listings like the Patio set you saved.&rdquo; This distinct notification makes Marketplace feel like it keeps providing fresh discoveries. The algorithmic feed already reflects everything I&rsquo;ve been looking at. This is something extra: another prompt, another reason to open the app, another small dopamine hit dressed up as helpfulness. What makes Marketplace different from scrolling Instagram is that this never feels like passive consumption. It feels like I&rsquo;m accomplishing something. That&rsquo;s the cover.</p>
+                <blockquote class="cap-quote q-s">
+                    &ldquo;A retained user was, in a simple sense, bigger in the logs &mdash; they left more traces, which provided more data for recommendations.&rdquo;
+                    <cite>&mdash; Nick Seaver, Captivating Algorithms (2019)</cite>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- ── 09: Amy messenger thread — urgency inside the transaction ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="messenger_thread_algorithm_nudge_see_similar_listings.png" alt="Messenger thread with Amy about 9 cube organizer: Amy is getting a lot of messages about this listing. See similar listings.">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-s">Seaver</span></div>
+                    <span class="slide-num">09 / 12</span>
+                </div>
+                <h2 class="cap-title">This Urgency Inside the Transaction</h2>
+                <p class="cap-body">I messaged Amy about a nine-cube organizer. Twenty-two hours later, with no reply, Marketplace injected a note into our conversation: <em>&ldquo;Amy is getting a lot of messages about this listing. See similar listings.&rdquo;</em> This isn&rsquo;t information from Amy. It&rsquo;s the platform manufacturing scarcity inside the transaction itself, telling me there&rsquo;s competition for the item, and redirecting me to browse more listings rather than wait for a response. I&rsquo;m in a private conversation with a seller, and Facebook has stepped into that space to generate urgency and keep me scrolling. The transaction is the entry point. The ecosystem is what keeps you.</p>
+            </div>
+        </div>
+
+        <!-- ── 10: notification tray ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="notification_tray_platform_generated_vs_real_messages.png" alt="iOS notification tray with real buyer messages and platform-generated Facebook alerts visually identical">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-s">Seaver</span></div>
+                    <span class="slide-num">10 / 12</span>
+                </div>
+                <h2 class="cap-title">Enticing Notification</h2>
+                <p class="cap-body">On one single day, I received ten notifications from Marketplace. Some were real buyers asking about things I was selling, sellers responding to my messages. Others were generated by the platform based on my browsing history: price alerts, newly listed items, things the algorithm thought I&rsquo;d want. Or they are updates, encouraging me to be a good seller or not to miss out on an item I expressed interest in. The urgency and impulse to check, respond, not miss out tempts me to go back to the app the minute I see the notification. I was enticed by communication both real and generated to get back to Facebook.</p>
+            </div>
+        </div>
+
+        <!-- ── 11: marketplace assistant bot ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="marketplace_assistant_price_drop_bot.png" alt="Facebook Marketplace Assistant Messenger notification: pillow cases price dropped $15">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-s">Seaver</span></div>
+                    <span class="slide-num">11 / 12</span>
+                </div>
+                <h2 class="cap-title">The Bot That Messages Like a Person</h2>
+                <p class="cap-body">This is Facebook Marketplace Assistant. It&rsquo;s a bot that sends you messages through Messenger, the same channel where real buyers and sellers reach you, to tell you that a listing you saved just dropped in price. It looks like someone reached out. It creates the same feeling: something is waiting, something requires a response. But there&rsquo;s no person on the other end. It&rsquo;s the platform generating its own urgent notification to pull you back in. A notification, in different sheeps clothing to seem like something helpful, not another attention trap.</p>
+            </div>
+        </div>
+
+        <!-- ── 12: messenger chats / no dedicated inbox ── -->
+        <div class="slide">
+            <div class="slide-imgs">
+                <img src="messenger_chats_marketplace_mixed_personal.png" alt="Messenger Chats list showing Marketplace messages, Facebook Marketplace Assistant, and personal friends mixed together">
+            </div>
+            <div class="slide-caption">
+                <div class="cap-top">
+                    <div class="cap-lenses"><span class="lens l-s">Seaver</span></div>
+                    <span class="slide-num">12 / 12</span>
+                </div>
+                <h2 class="cap-title">No Dedicated Inbox</h2>
+                <p class="cap-body">Marketplace doesn&rsquo;t have its own inbox. Every conversation you have about a secondhand lamp lives in Facebook Messenger alongside your friends, your message requests, strangers, and the Marketplace Assistant bot. The thread labeled &ldquo;Marketplace&rdquo; is funneled into the same space where Facebook keeps everything else. Completing any transaction means re-entering the broader Facebook ecosystem, every time.</p>
+            </div>
+        </div>
+
+    </div><!-- /track -->
+</div><!-- /gallery-shell -->
+
+
+<!-- ─── CLOSING ─── -->
+<section class="closing">
+    <div class="closing-inner">
+        <p class="kicker">Synthesis</p>
+        <h2>The Governed Subject</h2>
+        <p>Facebook Marketplace is a genuinely useful tool. Transactions complete. Wicker hampers change hands. The platform works, and the community it imagines, neighbors, local exchange, the circular economy, is not fictitious.</p>
+        <p>The convenience is real. That is exactly how the trap works.</p>
+        <p>Your browsing becomes your trap. Your Messenger coordination keeps your attention inside Facebook&rsquo;s infrastructure. Your willingness to return, because the feed surfaces things that are genuinely relevant to you, is the metric the platform is optimizing for. The message limit changes buying behavior. The ratings system produces self-discipline. The browser gate takes you from prey to caught. </p>
+        <blockquote>
+            &ldquo;The population is the subject of needs, of aspirations, but it is also the object in the hands of the government, aware of what it wants, but ignorant of what is being done to it.&rdquo;
+            <cite>&mdash; Michel Foucault, Governmentality (1978)</cite>
+        </blockquote>
+        <p>I knew what I wanted. I wasn&rsquo;t thinking about how that want was being managed, arranged, and monetized. I went to find furniture. I ended up building out a Facebook profile I hadn&rsquo;t touched in years.</p>
+        <p class="final-line">The governed subject is not deceived about what they want. They are simply unaware of what is being done with that want.</p>
+    </div>
+</section>
+
+
+<!-- ─── BACK MATTER ─── -->
+<div class="back-matter">
+    <h2>Works Cited</h2>
+    <p>Foucault, Michel. &ldquo;Governmentality.&rdquo; In <em>The Foucault Effect: Studies in Governmentality</em>, edited by Graham Burchell, Colin Gordon, and Peter Miller. University of Chicago Press, 1991.</p>
+    <p>Seaver, Nick. &ldquo;Captivating Algorithms: Recommender Systems as Traps.&rdquo; <em>Journal of Material Culture</em> 24, no. 4 (2019): 421&ndash;436.</p>
+    <div class="ai-note">
+        <p class="ai-label">AI Use Note</p>
+        <p> With Claude, I coded this website myself! Claude helped me structure my argument and organize field evidence into a coherent argumentative sequence. All observations, field notes, screenshots, and interpretive judgments are my own.</p>
+    </div>
+</div>
+
+
+<script>
+    const track = document.getElementById('track');
+    const slides = track.querySelectorAll('.slide');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const counter = document.getElementById('counter');
+    const total = slides.length;
+    let current = 0;
+
+    function goTo(i) {
+        current = Math.max(0, Math.min(total - 1, i));
+        track.scrollTo({ left: slides[current].offsetLeft, behavior: 'smooth' });
+        counter.textContent = String(current + 1).padStart(2, '0') + '  /  ' + String(total).padStart(2, '0');
+        prev.disabled = current === 0;
+        next.disabled = current === total - 1;
+    }
+
+    prev.addEventListener('click', () => goTo(current - 1));
+    next.addEventListener('click', () => goTo(current + 1));
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') goTo(current + 1);
+        if (e.key === 'ArrowLeft')  goTo(current - 1);
+    });
+
+    // sync counter on native scroll/swipe
+    track.addEventListener('scrollend', () => {
+        const w = track.clientWidth;
+        current = Math.round(track.scrollLeft / w);
+        counter.textContent = String(current + 1).padStart(2, '0') + '  /  ' + String(total).padStart(2, '0');
+        prev.disabled = current === 0;
+        next.disabled = current === total - 1;
+    });
+
+    goTo(0);
+</script>
+</body>
+</html>
