@@ -73,13 +73,6 @@
       to   { opacity: 1; }
     }
 
-    .hero-cap {
-      font-size: 2.8rem;
-      line-height: 1;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeIn .7s ease .1s forwards;
-    }
     .hero-line-1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(1.4rem, 3.6vw, 2rem);
@@ -405,91 +398,121 @@
     }
     .sig-right a:hover { text-decoration-color: var(--purple); }
 
-    /* ─── TASSEL (attached to hero, gold on purple) ─── */
-    .tassel-hero {
-      position: absolute;
-      right: 3rem;
-      top: 0;
+    /* ════════════════════════════════
+       PHOTO GALLERY
+    ════════════════════════════════ */
+    .gallery-section {
+      padding: 4rem 0 1rem;
+    }
+    .gallery-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+    .gallery-title-row {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      pointer-events: none;
-      opacity: .38;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
     }
-    .t-cap {
-      width: 26px;
-      height: 7px;
-      background: var(--gold);
-      border-radius: 1px;
-      position: relative;
-    }
-    .t-cap::before {
+    .gallery-title-row::after {
       content: '';
-      position: absolute;
-      top: -6px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 7px;
-      height: 7px;
-      background: var(--gold);
-      border-radius: 50%;
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold-rule), transparent);
     }
-    .t-cord {
-      width: 2px;
-      height: 72px;
-      background: var(--gold);
+    .gallery-label {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--gold);
+      white-space: nowrap;
     }
-    .t-bullion {
-      width: 14px;
-      height: 38px;
-      background: repeating-linear-gradient(
-        to bottom,
-        var(--gold) 0px,
-        var(--gold) 2.5px,
-        rgba(180,151,90,.42) 2.5px,
-        rgba(180,151,90,.42) 4.5px
-      );
-      border-radius: 2px;
-    }
-    .t-fringe {
-      display: flex;
-      gap: 2px;
-      margin-top: 3px;
-    }
-    .t-fringe span {
-      width: 1.5px;
-      height: 100px;
-      background: linear-gradient(to bottom, var(--gold) 72%, transparent);
-    }
-    @media (max-width: 640px) { .tassel-hero { display: none; } }
-
-    /* ─── ARCH HEADSHOT — SVG frame ─── */
-    .headshot-wrap {
-      display: flex;
-      justify-content: center;
-      padding: 2.5rem 0 3rem;
-    }
-    .arch-frame-wrap {
+    .gallery-stage {
       position: relative;
-      display: inline-block;
-      width: 210px;
-      height: 280px;
-      box-shadow: 0 18px 48px rgba(78,42,132,.14);
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: rgba(78,42,132,.06);
+      box-shadow:
+        0 0 0 1px var(--gold-rule),
+        0 18px 48px rgba(78,42,132,.1);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .arch-headshot {
+    .gallery-slide {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 10%;
+      object-position: center center;
+      opacity: 0;
+      transition: opacity .38s ease;
+      pointer-events: none;
     }
-    .arch-svg-frame {
+    .gallery-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* caption always visible at bottom of photo */
+    .gallery-caption {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.6rem 1.6rem 1.1rem;
+      background: linear-gradient(to top, rgba(20,8,45,.92) 0%, rgba(20,8,45,.55) 55%, transparent 100%);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.55;
+      text-shadow: 0 1px 6px rgba(0,0,0,.7), 0 0 18px rgba(0,0,0,.5);
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* nav row */
+    .gallery-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.1rem;
+      gap: 1rem;
+    }
+    .gallery-btn {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(180,151,90,.35);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--purple);
+      transition: background .2s, border-color .2s, color .2s, transform .18s;
+    }
+    .gallery-btn:hover {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: #fff;
+      transform: scale(1.06);
+    }
+    .gallery-btn svg { width: 14px; height: 14px; }
+    .gallery-counter {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      color: rgba(31,14,61,.38);
+    }
+    @media (max-width: 640px) {
+      .gallery-inner { padding: 0 1.4rem; }
+      .gallery-stage { aspect-ratio: 3/4; }
     }
 
     /* ─── NORTHWESTERN purple in announcement ─── */
@@ -506,6 +529,21 @@
       display: block;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--gold-rule), transparent);
+    }
+
+    /* ─── TASSEL ─── */
+    .hero-tassel {
+      position: fixed;
+      top: 0;
+      right: 2rem;
+      z-index: 50;
+      pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    .hero-tassel img {
+      height: 160px;
+      width: auto;
+      display: block;
     }
 
     /* ─── SCREEN READER ONLY ─── */
@@ -532,68 +570,45 @@
 </head>
 <body>
 
+<div class="hero-tassel" id="hero-tassel">
+  <img src="photos/tassel.png" alt="">
+</div>
+
 <!-- ═══════════════════════════════
      HERO
 ═══════════════════════════════ -->
 <section class="hero">
-  <div class="hero-cap">🎓</div>
   <div class="hero-line-1">One full ride, taken all the way to a degree.</div>
   <div class="hero-line-2">She did it.</div>
-  <!-- Tassel hangs from hero, stays with the section -->
-  <div class="tassel-hero" aria-hidden="true">
-    <div class="t-cap"></div>
-    <div class="t-cord"></div>
-    <div class="t-bullion"></div>
-    <div class="t-fringe">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span>
+</section>
+
+<!-- ═══════════════════════════════
+     PHOTO GALLERY
+═══════════════════════════════ -->
+<section class="gallery-section">
+  <div class="gallery-inner">
+    <div class="gallery-title-row">
+      <span class="gallery-label">Photos from the past four years</span>
+    </div>
+    <div class="gallery-stage" id="gallery-stage">
+      <!-- slides injected by JS -->
+      <div class="gallery-caption" id="gallery-caption"></div>
+    </div>
+    <div class="gallery-nav">
+      <button class="gallery-btn" id="gallery-prev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div class="gallery-counter" id="gallery-counter" aria-live="polite">01 / 01</div>
+      <button class="gallery-btn" id="gallery-next" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 6 15 12 9 18"/>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
-
-<!-- headshot inside SVG-drawn arch frame -->
-<div class="headshot-wrap">
-  <div class="arch-frame-wrap">
-    <img class="arch-headshot" src="headshot.png" alt="Ciera Cravens">
-    <!-- SVG arch frame drawn in design-system colors — overlays headshot -->
-    <svg class="arch-svg-frame" viewBox="0 -10 200 290" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- PURPLE ARCH STRUCTURE -->
-      <!-- Top solid band: everything above the arch curve (incl. pillar tops) -->
-      <!-- Inner arch: center (100,80), radius 80. Left pt (20,80), right pt (180,80), crown (100,0) -->
-      <path d="M 0,0 L 200,0 L 200,80 L 180,80 A 80,80 0 0,0 20,80 L 0,80 Z"
-            fill="#4E2A84"/>
-      <!-- Left pillar body -->
-      <rect x="0" y="80" width="20" height="180" fill="#4E2A84"/>
-      <!-- Right pillar body -->
-      <rect x="180" y="80" width="20" height="180" fill="#4E2A84"/>
-      <!-- Base strip -->
-      <rect x="0" y="260" width="200" height="20" fill="#4E2A84"/>
-
-      <!-- PILLAR DETAIL — subtle stone cap lines -->
-      <line x1="0" y1="86" x2="20" y2="86" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-      <line x1="180" y1="86" x2="200" y2="86" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-
-      <!-- GOLD DECORATIVE IRONWORK -->
-      <!-- Arch inner edge — the iron arch bar -->
-      <path d="M 20,80 A 80,80 0 0,1 180,80"
-            fill="none" stroke="#B4975A" stroke-width="2"/>
-      <!-- Second inner arch ring (like NU arch double bar) -->
-      <path d="M 28,80 A 72,72 0 0,1 172,80"
-            fill="none" stroke="#B4975A" stroke-width="0.8" opacity=".45"/>
-      <!-- Inner edge lines along pillars -->
-      <line x1="20" y1="80" x2="20" y2="260" stroke="#B4975A" stroke-width="1" opacity=".55"/>
-      <line x1="180" y1="80" x2="180" y2="260" stroke="#B4975A" stroke-width="1" opacity=".55"/>
-      <!-- Base inner line -->
-      <line x1="20" y1="260" x2="180" y2="260" stroke="#B4975A" stroke-width="1" opacity=".55"/>
-
-      <!-- Keystone at arch crown -->
-      <circle cx="100" cy="0" r="5.5" fill="#B4975A"/>
-      <!-- Keystone stem -->
-      <line x1="100" y1="5.5" x2="100" y2="16" stroke="#B4975A" stroke-width="1.2" opacity=".7"/>
-    </svg>
-  </div>
-</div>
 
 <!-- ═══════════════════════════════
      ANNOUNCEMENT — scroll unfurl
@@ -621,9 +636,9 @@
 <section class="journey">
   <div class="container">
     <div class="reveal">
-      <p>Four years ago, I left Arkansas for the big city of Chicago to attend Northwestern University and enter a new world.</p>
-      <p>In those four years, I studied economics, spent time in San Francisco working with tech startups, and helped teach entrepreneurship to my fellow students.</p>
-      <p class="journey-close">I don't know exactly what comes next. My next chapter is, at this moment, completely unwritten. But I know two things: I have a brand new degree, and I have you. That feels like more than enough.</p>
+      <p>Four years ago, I left Arkansas for the big city of Chicago to attend Northwestern University.</p>
+      <p>In those four years, I studied economics, spent time in San Francisco working with tech startups, helped teach entrepreneurship to my fellow students, and had a whole lot of fun with amazing people I met along the way.</p>
+      <p class="journey-close">I don't know exactly what comes next. My next chapter is, at this moment, completely unwritten. But I know two things: I have a brand new degree, and I have great friends and family (yes that includes you). That feels like more than enough.</p>
     </div>
   </div>
 </section>
@@ -638,7 +653,7 @@
 
     <div class="reveal">
       <h2 class="closing-header">Thank you for being a part<br>of my journey.</h2>
-      <p class="closing-body">You being here is part of how I made it. Consider this a yearbook page, a commemoration of our collective accomplishment. Sign it with a memory, a word, or just your name to mark that you were here.</p>
+      <p class="closing-body">Consider this a yearbook page, a commemoration of our collective accomplishment. Sign it with a memory, a word, or just your name to mark that you were here.</p>
     </div>
 
     <!-- dark card for the form only -->
@@ -670,6 +685,86 @@
 </section>
 
 <script>
+  // ═══════════════════════════════════════════════════════════
+  // PHOTO GALLERY
+  // ───────────────────────────────────────────────────────────
+  // Add photos to this array. Recommended: create a photos/
+  // subfolder in your cravt directory and drop images there.
+  //
+  // Each entry: { src: 'photos/filename.jpg', caption: '' }
+  // Leave caption as '' for no caption badge.
+  // ═══════════════════════════════════════════════════════════
+  const galleryPhotos = [
+    { src: 'photos/01.jpeg', caption: 'The freshman welcoming ceremony at Northwestern',        pos: 'center top' },
+    { src: 'photos/02.jpeg', caption: 'Move-in day with Mom at Deering Meadow',                pos: 'center top' },
+    { src: 'photos/03.jpeg', caption: 'The freshman orientation crew',                         pos: 'center top' },
+    { src: 'photos/04.jpeg', caption: 'Headed west for an entrepreneurship program sophmore year'              },
+    { src: 'photos/05.jpeg', caption: 'Visiting startups in San Francisco'                                     },
+    { src: 'photos/06.jpeg', caption: 'Ferry across the bay with my entrepreneurship cohort'                   },
+    { src: 'photos/07.jpeg', caption: 'The view from the Bay Bridge in my neighborhood of SF'                  },
+    { src: 'photos/08.jpeg', caption: "Friends and I at Dillo Day, Northwestern's annual music festival"       },
+    { src: 'photos/09.jpeg', caption: 'Post-victory energy after a volleyball win'                             },
+    { src: 'photos/10.jpeg', caption: 'Repping purple in the Northwestern shop'                                },
+    { src: 'photos/11.jpeg', caption: 'Chicago with Mom, riding the L'                                        },
+    { src: 'photos/12.jpeg', caption: 'Taken at Northwestern, with Chicago just across Lake Michigan', pos: 'center top' },
+    { src: 'photos/13.jpeg', caption: 'Learned how to snowboard in Whistler, Canada junior year!'              },
+    { src: 'photos/15.jpeg', caption: 'Dad showing out in Northwestern gear'                                   },
+  ];
+
+  (function () {
+    const stage    = document.getElementById('gallery-stage');
+    const caption  = document.getElementById('gallery-caption');
+    const counter  = document.getElementById('gallery-counter');
+    const prevBtn  = document.getElementById('gallery-prev');
+    const nextBtn  = document.getElementById('gallery-next');
+
+    let current = 0;
+    const total = galleryPhotos.length;
+
+    function pad(n) { return String(n + 1).padStart(2, '0'); }
+
+    // inject img elements before the caption
+    const slides = galleryPhotos.map((p, i) => {
+      const img = document.createElement('img');
+      img.className = 'gallery-slide' + (i === 0 ? ' active' : '');
+      img.src = p.src;
+      img.alt = p.caption || '';
+      img.draggable = false;
+      if (p.pos) img.style.objectPosition = p.pos;
+      stage.insertBefore(img, caption);
+      return img;
+    });
+
+    function show(idx) {
+      slides[current].classList.remove('active');
+      current = ((idx % total) + total) % total;
+      slides[current].classList.add('active');
+      counter.textContent = pad(current) + ' / ' + pad(total - 1);
+      caption.textContent = galleryPhotos[current].caption;
+    }
+
+    // initialize counter and first caption
+    counter.textContent = pad(0) + ' / ' + pad(total - 1);
+    caption.textContent = galleryPhotos[0].caption;
+
+    prevBtn.addEventListener('click', e => { e.stopPropagation(); show(current - 1); });
+    nextBtn.addEventListener('click', e => { e.stopPropagation(); show(current + 1); });
+
+    // keyboard nav
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    // touch swipe
+    let touchX = 0;
+    stage.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) dx < 0 ? show(current + 1) : show(current - 1);
+    }, { passive: true });
+  })();
+
   // ─── Confetti on load ───
   window.addEventListener('load', () => {
     // first burst at hero text finish (~1s)
@@ -712,6 +807,12 @@
     });
   }, { threshold: .05 });
   cardObs.observe(scrollCard);
+
+  // ─── Tassel fade on scroll ───
+  const tasselEl = document.getElementById('hero-tassel');
+  window.addEventListener('scroll', () => {
+    tasselEl.style.opacity = Math.max(0, 1 - window.scrollY / 180);
+  }, { passive: true });
 
   // ─── Fade-up reveal for other elements ───
   const obs = new IntersectionObserver(entries => {
