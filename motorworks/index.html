@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciera Cravens — For Motoworks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:    #141211;
+  --asphalt:  #1D1C1A;
+  --mid:      #252320;
+  --cream:    #F6EFE0;
+  --cream-2:  #EDE3CF;
+  --red:      #D42B18;
+  --silver:   #8C8882;
+  --ink:      #1A1916;
+
+  --body-dk:  rgba(246,239,224,.72);
+  --muted-dk: rgba(246,239,224,.4);
+  --rule-dk:  rgba(246,239,224,.09);
+  --rule-lt:  rgba(26,25,22,.1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; image-orientation: from-image; }
+a { color: inherit; }
+
+/* ── Scroll reveal ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+.reveal.vis { opacity: 1; transform: none; }
+.rfade { opacity: 0; transition: opacity .7s ease; }
+.rfade.vis { opacity: 1; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 2.5rem; }
+
+/* ── Section label ── */
+.label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: .67rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: block;
+  margin-bottom: .9rem;
+}
+
+/* ── Body paragraph ── */
+.bp { font-size: 1rem; font-weight: 300; line-height: 1.82; margin-bottom: 1rem; }
+.bp:last-child { margin-bottom: 0; }
+.bp strong { font-weight: 400; }
+
+/* ── Checkered divider — the signature device ── */
+.checker {
+  height: 14px;
+  background-image: repeating-conic-gradient(var(--red) 0% 25%, var(--black) 0% 50%);
+  background-size: 14px 14px;
+}
+.checker--sm {
+  height: 7px;
+  background-size: 7px 7px;
+}
+
+/* ───────────────────────────
+   HERO
+─────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+  opacity: .48;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(12,10,9,.0)  0%,
+    rgba(12,10,9,.08) 30%,
+    rgba(12,10,9,.68) 72%,
+    rgba(12,10,9,.96) 100%
+  );
+}
+/* Ghost racing number — the page's signature */
+.hero-ghost {
+  position: absolute;
+  right: -1vw;
+  bottom: -6vh;
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 54vw;
+  line-height: 1;
+  letter-spacing: -.04em;
+  color: #fff;
+  opacity: .032;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem 5.5rem;
+}
+.hero-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: .68rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1.1rem;
+}
+.hero-name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3.8rem, 12vw, 9rem);
+  text-transform: uppercase;
+  letter-spacing: -.025em;
+  line-height: .9;
+  color: var(--cream);
+  margin-bottom: .4rem;
+}
+.hero-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.4vw, 1.65rem);
+  color: rgba(246,239,224,.5);
+  letter-spacing: .04em;
+  margin-bottom: 2rem;
+}
+.hero-rule { width: 40px; height: 2px; background: var(--red); margin-bottom: 1.8rem; }
+.hero-contact {
+  font-size: .85rem;
+  font-weight: 300;
+  color: rgba(246,239,224,.46);
+  line-height: 2.3;
+}
+.hero-contact a {
+  color: rgba(246,239,224,.76);
+  text-decoration: underline;
+  text-decoration-color: rgba(246,239,224,.18);
+  text-underline-offset: 3px;
+  transition: text-decoration-color .2s;
+}
+.hero-contact a:hover { text-decoration-color: rgba(246,239,224,.76); }
+.hero-back {
+  display: inline-block;
+  margin-top: .75rem;
+  font-size: .78rem;
+  color: rgba(246,239,224,.38);
+  text-decoration: underline;
+  text-decoration-color: rgba(246,239,224,.14);
+  text-underline-offset: 3px;
+  transition: all .2s;
+}
+.hero-back:hover { color: var(--cream); text-decoration-color: var(--cream); }
+
+/* ───────────────────────────
+   INTRO — dark (01)
+─────────────────────────── */
+.sec-dark { background: var(--asphalt); padding: 7rem 0; }
+.sec-dark h2 { color: var(--cream); }
+.sec-dark .bp { color: var(--body-dk); }
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 5.5rem;
+  align-items: center;
+}
+
+.sec-h {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  text-transform: uppercase;
+  letter-spacing: -.015em;
+  line-height: .95;
+  margin-bottom: 1.5rem;
+}
+
+/* Portrait — wheel frame */
+.portrait-wrap { position: relative; width: 340px; height: 340px; flex-shrink: 0; }
+.portrait-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    rgba(212,43,24,.88) 0deg 3deg,
+    rgba(14,12,11,.95) 3deg 10deg
+  );
+  mask: radial-gradient(circle farthest-side at 50% 50%, transparent calc(100% - 22px), black calc(100% - 19px));
+  -webkit-mask: radial-gradient(circle farthest-side at 50% 50%, transparent calc(100% - 22px), black calc(100% - 19px));
+}
+.portrait-wrap::after { display: none; }
+.portrait-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(212,43,24,.45);
+  box-shadow: 0 8px 40px rgba(0,0,0,.4);
+}
+.portrait-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 58%;
+}
+
+/* Pull quote */
+.pq {
+  border-left: 3px solid var(--red);
+  padding: 1rem 1.4rem;
+  margin: 1.5rem 0;
+  background: rgba(212,43,24,.06);
+}
+.pq p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--cream);
+}
+
+/* ───────────────────────────
+   SALES — cream (02)
+─────────────────────────── */
+.sec-light { background: var(--cream); padding: 7rem 0; }
+.sec-light h2 { color: var(--ink); }
+.sec-light .bp { color: var(--ink); }
+
+.exp-block {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--rule-lt);
+}
+.exp-block:first-of-type { padding-top: 0; }
+.exp-block:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+.sec-dark .exp-block { border-bottom-color: var(--rule-dk); }
+.sec-dark .exp-block:last-of-type { border-bottom: none; }
+
+.exp-h {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  line-height: 1.0;
+  color: var(--ink);
+  margin-bottom: .75rem;
+}
+.sec-dark .exp-h { color: var(--cream); }
+.sec-mid .exp-h { color: var(--cream); }
+
+.meta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 500;
+  font-size: .76rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--silver);
+  display: block;
+  margin-bottom: .65rem;
+}
+
+/* ───────────────────────────
+   OPERATIONS — mid dark (03)
+─────────────────────────── */
+.sec-mid { background: var(--mid); padding: 7rem 0; }
+.sec-mid h2 { color: var(--cream); }
+.sec-mid .bp { color: var(--body-dk); }
+.sec-mid .exp-block { border-bottom-color: var(--rule-dk); }
+.sec-mid .exp-block:last-of-type { border-bottom: none; }
+
+/* ── Work photo ── */
+.work-grid { display: grid; grid-template-columns: 1fr 220px; gap: 1.8rem; align-items: start; }
+.work-grid .bp { margin-bottom: 0; }
+.work-photo { width: 100%; border-radius: 6px; }
+
+/* ── Credentials accordion ── */
+.creds { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule-lt); }
+.sec-dark .creds, .sec-mid .creds { border-top-color: var(--rule-dk); }
+.creds-toggle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--silver);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  transition: color .18s;
+}
+.creds-toggle::-webkit-details-marker { display: none; }
+.creds-toggle::before { content: '↓'; transition: transform .2s; display: inline-block; }
+details[open] .creds-toggle::before { transform: rotate(180deg); }
+.creds-toggle:hover { color: var(--ink); }
+.sec-dark .creds-toggle:hover, .sec-mid .creds-toggle:hover { color: var(--cream); }
+.creds-body {
+  margin-top: .9rem;
+  padding: 1.1rem 1.3rem;
+  background: rgba(26,25,22,.05);
+  font-size: .83rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(26,25,22,.52);
+}
+.sec-dark .creds-body, .sec-mid .creds-body {
+  background: rgba(246,239,224,.04);
+  color: rgba(246,239,224,.38);
+}
+.creds-body strong { font-weight: 400; color: var(--ink); }
+.sec-dark .creds-body strong, .sec-mid .creds-body strong { color: var(--cream-2); }
+.creds-body ul { margin-top: .4rem; padding-left: 1.1rem; }
+.creds-body li { margin-bottom: .2rem; }
+.creds-body .creds-role { margin-top: .9rem; }
+
+/* ───────────────────────────
+   BUILDING — black (04)
+─────────────────────────── */
+.sec-build { background: var(--black); padding: 7rem 0; }
+.sec-build h2 { color: var(--cream); }
+.sec-build .bp { color: var(--body-dk); }
+
+.build-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.build-card {
+  padding: 2rem 1.8rem;
+  border: 1px solid rgba(246,239,224,.09);
+  background: rgba(246,239,224,.03);
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  transition: border-color .2s, background .2s;
+}
+.build-card:hover {
+  border-color: rgba(212,43,24,.3);
+  background: rgba(212,43,24,.04);
+}
+.card-num {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--red);
+  opacity: .55;
+}
+.card-h {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 800;
+  font-size: 1.12rem;
+  text-transform: uppercase;
+  letter-spacing: -.005em;
+  line-height: 1.1;
+  color: var(--cream);
+}
+.card-p {
+  font-size: .92rem;
+  font-weight: 300;
+  color: rgba(246,239,224,.58);
+  line-height: 1.78;
+  flex: 1;
+}
+.card-status {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+/* ───────────────────────────
+   CLOSING
+─────────────────────────── */
+.closing { background: var(--asphalt); padding: 6.5rem 0; }
+
+.closing-h {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: -.025em;
+  line-height: .9;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+.closing .bp { color: var(--body-dk); }
+.closing-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.sig-row {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--rule-dk);
+}
+.sig-img {
+  height: 58px;
+  width: auto;
+  max-width: 250px;
+  filter: invert(1) contrast(5);
+  mix-blend-mode: screen;
+  opacity: .8;
+}
+.sig-info {
+  font-size: .82rem;
+  font-weight: 300;
+  color: rgba(246,239,224,.38);
+  line-height: 2.4;
+}
+.sig-info a {
+  color: rgba(246,239,224,.66);
+  text-decoration: underline;
+  text-decoration-color: rgba(246,239,224,.18);
+  text-underline-offset: 3px;
+  transition: text-decoration-color .2s;
+}
+.sig-info a:hover { text-decoration-color: rgba(246,239,224,.7); }
+.closing-portrait {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+.closing-portrait::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    rgba(212,43,24,.88) 0deg 3deg,
+    rgba(14,12,11,.95) 3deg 10deg
+  );
+  mask: radial-gradient(circle farthest-side at 50% 50%, transparent calc(100% - 20px), black calc(100% - 17px));
+  -webkit-mask: radial-gradient(circle farthest-side at 50% 50%, transparent calc(100% - 20px), black calc(100% - 17px));
+}
+.closing-portrait::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid rgba(212,43,24,.5);
+  pointer-events: none;
+}
+.closing-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 10%;
+  clip-path: circle(50% at 50% 50%);
+}
+
+/* ───────────────────────────
+   RESPONSIVE
+─────────────────────────── */
+@media (max-width: 820px) {
+  .container { padding: 0 1.4rem; }
+  .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .portrait-wrap { width: 220px; height: 220px; }
+  .build-grid { grid-template-columns: 1fr; }
+  .hero-content { padding: 3rem 1.4rem 4.5rem; }
+  .sig-row { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .closing-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .closing-portrait { width: 130px; height: 130px; }
+  .work-grid { grid-template-columns: 1fr; }
+  .work-photo { max-width: 260px; }
+  .sec-dark, .sec-light, .sec-mid, .sec-build, .closing { padding: 5rem 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .rfade { transition: none; opacity: 1; transform: none; }
+}
+
+/* ───────────────────────────
+   FORMAL RESUME
+─────────────────────────── */
+.resume-doc {
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 3px;
+  padding: 3.5rem;
+  max-width: 680px;
+  box-shadow: 0 6px 40px rgba(0,0,0,.55);
+}
+.resume-name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: .3rem;
+}
+.resume-contact {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .85rem;
+  letter-spacing: .04em;
+  color: rgba(26,25,22,.55);
+  margin-bottom: 1.5rem;
+}
+.resume-contact a { color: inherit; text-decoration: none; }
+.resume-contact a:hover { color: var(--red); }
+.resume-hr { border: none; border-top: 1px solid rgba(26,25,22,.12); margin: 1.5rem 0; }
+.resume-sec-head {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1rem;
+}
+.resume-entry { margin-bottom: 1.25rem; }
+.resume-entry-h {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: .88rem;
+  color: var(--ink);
+  margin-bottom: .15rem;
+}
+.resume-entry-meta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .78rem;
+  letter-spacing: .02em;
+  color: rgba(26,25,22,.5);
+  margin-bottom: .4rem;
+}
+.resume-entry-body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: .82rem;
+  line-height: 1.58;
+  color: rgba(26,25,22,.72);
+  margin: 0;
+}
+.resume-dl { margin-top: 1.8rem; }
+.resume-pdf-link {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(246,239,224,.35);
+  text-decoration: none;
+  transition: color .2s;
+}
+.resume-pdf-link:hover { color: var(--cream); }
+@media (max-width: 820px) {
+  .resume-doc { padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════
+     HERO
+════════════════════════ -->
+<section class="hero">
+  <div class="hero-ghost" aria-hidden="true">01</div>
+  <div class="hero-content">
+    <div class="hero-name reveal" style="transition-delay:.07s">Let's Ride<br>Together</div>
+    <div class="hero-sub reveal" style="transition-delay:.14s">A Resume Website by Ciera Cravens for Motoworks</div>
+    <div class="hero-rule reveal" style="transition-delay:.2s"></div>
+    <div class="hero-contact reveal" style="transition-delay:.26s">
+      <a href="mailto:cieracravenz@gmail.com">cieracravenz@gmail.com</a><br>
+      <a href="https://linkedin.com/in/ciera-cravens" target="_blank">linkedin.com/in/ciera-cravens</a><br>
+      <a class="hero-back" href="/">← cieracravens.com</a>
+    </div>
+  </div>
+</section>
+
+<div class="checker" aria-hidden="true"></div>
+
+<!-- ════════════════════════
+     00 · HOW I ENDED UP HERE
+════════════════════════ -->
+<section class="sec-dark">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="reveal">
+        <h2 class="sec-h">You Had Me<br>at Hello</h2>
+        <p class="bp">Walking into Motoworks, I had no expectations. I wasn't shopping for myself and knew very little about bikes. I didn't expect to find a place I didn't want to leave.</p>
+        <p class="bp">I immediately felt like a friend. Your staff lit up when we walked in. They were excited when I asked questions and gave me explanations I could actually follow as a complete novice.</p>
+        <p class="bp">Motoworks is an inspiration for how to welcome people, teach them something real, and run a business that makes people leave smiling. If there's a way to make it work, I would love to learn how you do it and be a part of it.</p>
+      </div>
+      <div class="rfade" style="transition-delay:.18s; display:flex; justify-content:center;">
+        <div class="portrait-wrap">
+          <div class="portrait-circle">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczNBsRbSmoORtR64hzfITsAn7Qe7Uu-YIvK_wrYu-tbz3qiepth-QoU9eGdoENFQxM9jhSdii5sJSHINb4M64F1_Pdpkp4z8Cs_F0x8O2YAxwfzLoyGzypK-OYZcNpAIN7INIwAGX5-9UpvcW0Cl60KNMCWO9RcXmwXsk7umZsfxP1o9QSUFc_WP1gVKtb9Eopw3r4l3dmclowB9YOz9TMGpeyRPbGYbIacguCqZXnWd38YV996gaURNPM89uEzeKovK5EHA0VYcWfBeOy7hgSS_aFvEEHbYQ_w9hW0MF8jAp6EleLsG-N9CHrvIUOBlNlIb7Vit5fXEtXM6aDm_a9nEjlE_aq5mjfuB9hIx8h8kbWRWzIi7e_B8WZXJJqXyxcAoABrFcRmU0j0xoIXF99ZQobI3HZnOkzKhyz3Y-q4IgR3GWXjB0OuJnESlFUR28VgXSfC9unbQbCjCs-Dzc7rM1kBPqzwbMv0xDKF8XC6gzBpAoaTdNpDZUrD_NOoUDvYdTsLEM08K3Ikse5Oa8vOmm8T1qmjFCpUElqM0MoQuxGg-EQhJZo6fy9Q3O_M5z_Pk-JGoTq5Ex3mg5IherOnpJVIrhxV9bFEvdTyqFU48At-cmVuyWhoBZfCg8UAF8pf2ptHvfJlj4ebWb0zezx-AYEV0lcjRonvAbwSlNZIpy5PLV473MhbG854Va9-A0yOiYqhUO5YJZ0f8d0PnO0vl_ydJQ0xdcz6XwUE6wBAAGXieUw4JIB8eTo72RGhXjmpOTppdPtB5muDCtkXpvpLA59ZcAVrG7etTImjwabP4jQViZNIV5PwsF2zP0hvMqPQV_h6oV_uo4_cb7QZeSAPXrzWkbkfcPC2JtQPjg5kpkNevgA9YX0UJDUNkCfo575dILJBJ9PDes9yTqME=w2098-h1574-s-no?authuser=0" alt="Ciera in riding gear next to a motorcycle">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker checker--sm" aria-hidden="true"></div>
+
+<!-- ════════════════════════
+     01 · HOW I LIKE TO WORK
+════════════════════════ -->
+<section class="sec-light">
+  <div class="container">
+
+    <div class="reveal" style="margin-bottom: 3.5rem;">
+      <h2 class="sec-h" style="color: var(--ink);">How I Like to Work<br>Based on Experience.</h2>
+    </div>
+
+    <div class="exp-block reveal">
+      <span class="meta">Teaching Assistant · Northwestern University · Jan 2023 – Dec 2023</span>
+      <div class="exp-h">Manager of One</div>
+      <p class="bp">I TAed eight courses at Northwestern, including a dedicated Sales &amp; Marketing course. Each had its own instructor, its own students, and its own schedule, and I was the connective tissue. I was responsible for coordinating with faculty, managing student communication, organizing office hours and guest speakers. No one was checking that all of it got done. The expectation was that I would figure out what was needed and handle it.</p>
+      <details class="creds">
+        <summary class="creds-toggle">Credentials</summary>
+        <div class="creds-body">
+          <strong>Teaching Assistant</strong> — Northwestern University<br>
+          Jan 2023 – Dec 2023 · Evanston, IL
+          <ul>
+            <li>Supported 8 entrepreneurship courses, including Sales &amp; Marketing</li>
+            <li>Helped structure curriculum and coordinate industry speakers with faculty</li>
+            <li>Managed student communication and office hours</li>
+          </ul>
+          <div class="creds-role">
+            <strong>Administrative Assistant</strong> — Farley Center for Entrepreneurship &amp; Innovation<br>
+            Oct 2022 – Jan 2023 · Evanston, IL
+            <ul>
+              <li>First point of contact for all walk-ins, phone calls, and visitor inquiries</li>
+              <li>Managed office databases and day-to-day operations independently</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exp-block reveal">
+      <span class="meta">Operations Associate · Techstars · Nov 2023 – Jul 2025</span>
+      <div class="exp-h">Anticipating Your Needs</div>
+      <p class="bp">At Techstars I was part of a small ops team supporting startup accelerator programs — 5 of them, each running 12+ companies through a 3-month business development sprint. In real words: we invested in people with business ideas, gave them the tools to build something real, and supported them the whole way through. There were no direct managers for our team. We had short check-ins and communicated often with async messages, worked independently through mostly remote work, and held ourselves accountable for what other people were counting on.</p>
+      <p class="bp">The work ranged from coordinating 50+ 1 on 1 meetings per program to setting up tech industry events in San Francisco, handling catering, running grocery trips, and managing AV. On 600-person Demo Day I took over event check in when things got hectic and helped a nervous founder rehearse their presentation. I didn't wait until someone asked me to do something, I seek out how to be helpful proactively and execute.</p>
+      <details class="creds">
+        <summary class="creds-toggle">Credentials</summary>
+        <div class="creds-body">
+          <strong>Operations Associate</strong> — Techstars<br>
+          Nov 2023 – Jul 2025 · Oakland, CA &amp; San Francisco, CA<br><br>
+          Supported operations across five accelerator programs, including all Techstars Oakland cohorts and the inaugural Techstars San Francisco program. Also helped manage the Rising Stars Fund.
+          <ul>
+            <li>Managed day-to-day operational logistics across multiple simultaneous programs</li>
+            <li>Served as a coordination point between program team, founders, and external stakeholders</li>
+            <li>Contributed to building and executing program operations for inaugural San Francisco program</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="exp-block reveal">
+      <span class="meta">Server Assistant · Table Mesa Bistro · Bentonville, AR · 2020–2021 + random other work experience</span>
+      <div class="exp-h">Learn Fast</div>
+      <div class="work-grid">
+        <p class="bp">From starting at a busy restaurant on a slammed saturday night to creating a wood sculpture in two days to running a landscaping business with my dad, I have proven to myself that I am a fast learner and work well under pressure. My next learning conquest is motorcycles, I'm ready to be a great student and have proven that I can do it. </p>
+        <img class="work-photo" src="https://lh3.googleusercontent.com/pw/AP1GczOLUwCJWpO6ADGjs1s966NPbLMH6FJgO62_CY1lvXT_UFotnX_Uxa3gnJzO1ozYzmnI24CkWV4JGtOyj0gdnEcT2Vmu2J6ncY__JwnrjWk9gP3WFnsaX5W7EqDDfjzgWqLOsnhhIVfFckvb4045NoPVdfGHNI63o3mHP1xvKKA4eU9ZKqo2OUvqE_yuqujAX-ddxQjcUNgpCImp1Wq2pRpSOFSgUsiiJT-CgLMNwFQbL2CKILB8lXtx_3gysj3DstwnLPdn4SezHFHmUXJRdJj1uQY3MQPYB4ZXnkk2A_bbPHeKQc7uJKurNdRsbY3KHjNU4U_fwsRU1lYURqcorO2N4K9750ul8fkBGQMuVWuJOsvfOKTmI8tgluAKfhwBkr_dxzafE8F81bU78L7Y-eis8C9f0xyaSk22s9_Pyzqib_bpPZEKfq6yloFs9y3f4AW85TZJjIFBxI2ZsX18O5u5JsOMzg4mVOGgSszEyvNQPkrRWDS6c70Z8UqkQDgwBfupecfEsL_a5kYuTrw1wXqUCl3H0HakGxdLQHaNyugDSxsmtuTyawcoYx6PQVT5Nn0Qnf-noy6raPgNrHtu9xxh7gTBR7yY-92mj1SwPH9fu8YFzaP5DoIkCJBPZ5XSPgMEbsJr1wEpdzQUKkL4-xbClb6K_tLzx1M-MgImcUUgacZP6J4k92DDJp_h4WxqTbmPElXZO-Mf9g7smdMFw7CAhFWa9nReKsiNs8atP-ocJg9lHLNcUM2uFnjJhC5nWKTFKoXIPMRnd1x8c5HY2qGA1Vj4KcUzM7w-OmBwBbyi2oMsFAupyAZf55NFnTtyr1XZeujymOIpuxuGJbU-sh187_KDwDbpD4wzasSYtr3GyV4koTuE_NBYqDvAS4-aIjGtRh_jF4aBP0Vbd90=w1180-h1574-s-no?authuser=0" alt="Wood sculpture made in two days">
+      </div>
+      <details class="creds">
+        <summary class="creds-toggle">Credentials</summary>
+        <div class="creds-body">
+          <strong>Server Assistant (Back Waiter)</strong> — Table Mesa Bistro<br>
+          Aug 2020 – Jun 2021 · Bentonville, AR
+          <ul>
+            <li>Supported servers in a high-volume restaurant during peak service</li>
+            <li>Managed table busing, silverware prep, and section stocking</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<div class="checker checker--sm" aria-hidden="true"></div>
+
+<!-- ════════════════════════
+     02 · THE ROAD AHEAD
+════════════════════════ -->
+<section class="sec-mid">
+  <div class="container">
+
+    <div class="reveal" style="margin-bottom: 3.5rem;">
+      <h2 class="sec-h">The Road Ahead</h2>
+    </div>
+
+    <div class="exp-block reveal">
+      <span class="meta">Starting Out</span>
+      <div class="exp-h">Operational Support and Service Scheduling</div>
+      <p class="bp">The work I'm most confident I can be immediately helpful with is managing appointments and keeping communication about the shop running smoothly. It's very similar to what I did at Techstars and Northwestern, and I love talking to people and making their days a little easier.</p>
+    </div>
+
+    <div class="exp-block reveal">
+      <span class="meta">Down the Road</span>
+      <div class="exp-h">Sales</div>
+      <p class="bp">I've been around a lot of entrepreneurs and learned a lot about how to sell... in theory. I haven't had quite the opportunity to put that theory into practice for a real business yet. I've run my own small crochet business and did a stint in sales for a startup, but I would love to build this skill with you — especially since I've already seen how good your sales team is and want to learn from them.</p>
+    </div>
+
+    <div class="exp-block reveal">
+      <span class="meta">The Great Beyond</span>
+      <div class="exp-h">Mechanical Support</div>
+      <p class="bp">I'm genuinely curious about how motorcycles work. I would love to spend time in the shop around the mechanics, even if that starts with handing someone the right tool and asking a lot of questions. I pick things up fast and I'd be eager to contribute more over time.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="checker" aria-hidden="true"></div>
+
+<!-- ════════════════════════
+     03 · WHAT I'M DOING NOW
+════════════════════════ -->
+<section class="sec-build">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="sec-h">What I'm Learning Now</h2>
+      <p class="bp" style="max-width: 580px; margin-top: 1rem;">A menu of skills I'm building that you can use as assets for Motoworks.</p>
+    </div>
+    <div class="build-grid">
+
+      <div class="build-card reveal">
+        <div class="card-h">Illinois Motorcycle Permit + License</div>
+        <p class="card-p">I just got my Illinois Motorcycle Permit! Lessons are scheduled! It started because of one visit to your shop and I'm ready to get serious about motorcycles.</p>
+      </div>
+
+      <div class="build-card reveal" style="transition-delay:.1s">
+        <div class="card-h">Websites, Apps &amp; Technical Tools</div>
+        <p class="card-p">I built this page. I've been working on apps for personal use, but I've never built something for a real business. You could be the first! Whether that's a service scheduling tool, a booking system, or something else entirely, I'd love to take a stab at making something you can keep, no third parties or subscriptions.</p>
+      </div>
+
+      <div class="build-card reveal" style="transition-delay:.2s">
+        <div class="card-h">Building an Online Presence You're Proud Of</div>
+        <p class="card-p">I was the social media assistant for a global nail polish company, Piggy Paint. That work was fun, but since then I've learned a lot more about marketing and building an online presence that's true to a business. I don't want to make you influencers, but I'd be happy to come up with ideas and work on a strategy for what online marketing could look like for Motoworks.</p>
+        
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     CLOSING
+════════════════════════ -->
+<div class="checker" aria-hidden="true"></div>
+
+<section class="closing">
+  <div class="container">
+    <div class="closing-grid reveal">
+      <div class="closing-portrait">
+        <img src="https://lh3.googleusercontent.com/pw/AP1GczN0IH70YMRhV5JIvTYSAloZmrWSUrl1R5J_qTOnxr6unIjUDULCjTrvJPbM3G0VpRtQFdEk9R-6L8gapkzgi-dp2vE69uhHoTBjLAaGN8AfnAcIPc5ZL_mKjyPBgftRJkXfovWmv2ncma4aC5y88jbBkZlC9jZz5VaNefQvOtMe5pzleosyxN5jjQTlWkScfZmXiMBKPnDl4o0GCBbs-Bw6rIirHKkzUhOk0nLjp-8g-DUx1h7dIm9dVsvx_YDeKiGAgEm_7cwEJmJilRMsYS2khembFt2YlCv6lIaZ-F_tUcY5-GD5wOZyzjHovtYDZhWDQDrVUJ1AUE2Kb_9Vomw_IgxyWmnhreCC82TYPSuPJGdWSRoq94YLjyeOFy-eJpmbyQ5_lQNF4MQRNk-HyDqyg3cNxeRi-D0vUxNeJa8g-IW5soa0RjLWeHMSF7iA2JQhRoho-B2NTYlqUtrJ05DrQwHI0GR0rVbMl1Q8DIO0QG2gPVI0rAf27scLBDj7GfIs03ZGjnWLCgh6fEzbA62jkinlD5O7CzmuZ8kWFK6zc5fxN3tb0RJp8lXsoJooN7dyJspzQMDBkNh22MUFDNerFZ42y4lOWSzbicU_D_-hjexdcrp8DGyGhZTiGwSAIs9LjBYPoVhYDIlnr2KHpUyLVgfk6mRHPTt1TQ_yRlZGbzq89FVWNX6GDq8Pz8B-_1lrPehKt92YZ9NxUOwhIfNOD3CzcrfXhGdoui8iFhgxKPGie9waK5gSj5_nZGHizVfkSl_aaec6YSmjz97IVSIC1LcEgu6EcRdMS0Ni-DOXB1Lo9tMunfB_GJs474_zgUCKAaq57rSxXOLylh0n9JEBHSN-IQem_r5DnN4cf9ARjQ1dLggNQ4afZr7-D-vMs_1PXkW1UEOUYABxm8I=w896-h1195-s-no?authuser=0" alt="Ciera Cravens">
+      </div>
+      <div>
+        <div class="closing-h">No Expectations.<br>I Just Want to Help.</div>
+        <p class="bp">I want to be in the shop. I want to be around the people. If I can make myself useful while that's happening with scheduling, the service desk, odd jobs, or building something technical, that's the deal I'm looking for. I don't need it to have a formal title from day one. I just want to try to see if we can be a great fit.</p>
+      </div>
+    </div>
+    <div class="sig-row reveal">
+      <img class="sig-img" src="images/signature.jpeg" alt="Ciera Cravens signature">
+      <div class="sig-info">
+        <a href="mailto:cieracravenz@gmail.com">cieracravenz@gmail.com</a><br>
+        <a href="https://linkedin.com/in/ciera-cravens" target="_blank">linkedin.com/in/ciera-cravens</a><br>
+        Northwestern University · BA Economics · Class of 2026
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker checker--sm" aria-hidden="true"></div>
+
+<!-- ════════════════════════
+     FORMAL RESUME
+════════════════════════ -->
+<section class="sec-dark">
+  <div class="container">
+    <span class="sec-label reveal">Full Resume</span>
+    <div class="resume-doc reveal">
+      <div class="resume-name">Ciera Cravens</div>
+      <div class="resume-contact">cieracravenz@gmail.com · <a href="https://linkedin.com/in/ciera-cravens" target="_blank">linkedin.com/in/ciera-cravens</a> · Greater Chicago Area</div>
+
+      <div class="resume-hr"></div>
+      <div class="resume-sec-head">Education</div>
+      <div class="resume-entry">
+        <div class="resume-entry-h">Northwestern University — BA Economics</div>
+        <div class="resume-entry-meta">Sept 2022 – Expected June 2026 · Evanston, IL</div>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-h">Bentonville West High School</div>
+        <div class="resume-entry-meta">Aug 2018 – May 2022 · Bentonville, AR</div>
+      </div>
+
+      <div class="resume-hr"></div>
+      <div class="resume-sec-head">Experience</div>
+      <div class="resume-entry">
+        <div class="resume-entry-h">Techstars — Operations Associate</div>
+        <div class="resume-entry-meta">Nov 2023 – July 2025 · Oakland, CA &amp; San Francisco, CA</div>
+        <p class="resume-entry-body">Supported operations across five accelerator programs including Techstars Oakland cohorts, the inaugural San Francisco program, and the Rising Stars Fund. Managed logistics across concurrent programs, coordinated between stakeholders, and built operations for a brand-new program from the ground up.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-h">Northwestern University — Entrepreneurship Teaching Assistant</div>
+        <div class="resume-entry-meta">Jan 2023 – Dec 2023 · Evanston, IL</div>
+        <p class="resume-entry-body">Collaborated with faculty across eight entrepreneurship courses including AI Innovation in Action, NUvention Arts &amp; Entertainment, and History of Innovation. Supported curriculum development, student communication, and industry speaker coordination.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-h">Farley Center for Entrepreneurship and Innovation — Administrative Assistant</div>
+        <div class="resume-entry-meta">Oct 2022 – Jan 2023 · Evanston, IL</div>
+        <p class="resume-entry-body">Front-office support: reception, phone and walk-in management, database management, and independent office operations.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-h">Piggy Paint — Social Media &amp; Office Assistant</div>
+        <div class="resume-entry-meta">Jun 2021 – Nov 2022 · Lowell, AR</div>
+        <p class="resume-entry-body">Managed social media across three global brands. Led website improvement projects to improve customer and team experience.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-h">Table Mesa Bistro — Server Assistant</div>
+        <div class="resume-entry-meta">Aug 2020 – Jun 2021 · Bentonville, AR</div>
+        <p class="resume-entry-body">Fast-paced customer service in a high-volume restaurant. Table busing, silverware prep, and section stocking while supporting servers during peak service.</p>
+      </div>
+
+      <div class="resume-hr"></div>
+      <div class="resume-sec-head">Certifications</div>
+      <div class="resume-entry">
+        <p class="resume-entry-body">Arkansas Seal of Biliteracy (Spanish) · Learn Enough: HTML, Git, Text Editor, Command Line</p>
+      </div>
+    </div>
+    <div class="resume-dl reveal">
+      <a href="https://docs.google.com/document/d/1C052p_k_-UronNf4xG-wzTJwyidRnU7KUV2F7OJVevE/export?format=pdf" class="resume-pdf-link" target="_blank">Download PDF ↓</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+  });
+}, { threshold: .07 });
+document.querySelectorAll('.reveal, .rfade').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
